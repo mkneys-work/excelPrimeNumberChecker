@@ -23,7 +23,6 @@ public class XsfxReader {
     public List<Integer> readPositive32bitIntegersFromColumn(int sheetNumber, int collNumber){
         List<Integer> columnNumbers = new ArrayList<Integer>();
         XSSFSheet sheet = xsfxWorkbook.getSheetAt(sheetNumber);
-        DataFormatter fmt = new DataFormatter();
 
         int rowIndex = 0;
         Row row = sheet.getRow(rowIndex);
