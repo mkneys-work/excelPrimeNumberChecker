@@ -35,7 +35,7 @@ public class XsfxReader {
                     Integer positiveIntValue = Integer.parseInt(cell.getStringCellValue());
                     columnNumbers.add(positiveIntValue);
                 } catch (NumberFormatException e) {
-                    System.out.println("Can not read more than 32 bit integer number");
+                    System.out.println("Method does not support reading more than 32 bit number");
                 }
             }
 
