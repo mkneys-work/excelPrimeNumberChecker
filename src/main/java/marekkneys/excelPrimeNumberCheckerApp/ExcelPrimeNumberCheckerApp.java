@@ -11,15 +11,15 @@ public class ExcelPrimeNumberCheckerApp {
             System.exit(0);
         }
 
-        String xslxFile = args[0];
+        String xlsxFile = args[0];
 
-        XsfxReader reader;
+        XlsxReader reader;
         List<Integer> positiveIntegers = null;
         try {
-            reader = new XsfxReader(xslxFile);
+            reader = new XlsxReader(xlsxFile);
             positiveIntegers = reader.readPositive32bitIntegersFromColumn(0, 1);
         } catch (FileNotFoundException e) {
-            System.out.println("Can not find file with path " + xslxFile);
+            System.out.println("Can not find file with path " + xlsxFile);
             System.exit(0);
         } catch (IOException e) {
             e.printStackTrace();

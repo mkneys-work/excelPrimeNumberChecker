@@ -11,10 +11,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class XsfxReader {
+public class XlsxReader {
     private XSSFWorkbook xsfxWorkbook;
 
-    public XsfxReader(String filePath) throws IOException {
+    public XlsxReader(String filePath) throws IOException {
         File myFile = new File(filePath);
         FileInputStream fis = new FileInputStream(myFile);
         this.xsfxWorkbook = new XSSFWorkbook (fis);
