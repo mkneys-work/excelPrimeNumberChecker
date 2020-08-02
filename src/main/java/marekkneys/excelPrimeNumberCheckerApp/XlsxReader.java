@@ -4,14 +4,14 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class XlsxReader {
+public class XlsxReader implements Closeable {
+
+    private static final String REGEX_POSITIVE_INTEGER = "\\d+";
+
     private XSSFWorkbook xsfxWorkbook;
 
     public XlsxReader(String filePath) throws IOException {
@@ -21,7 +21,7 @@ public class XlsxReader {
     }
 
     public List<Integer> readPositive32bitIntegersFromColumn(int sheetNumber, int collNumber){
-        List<Integer> columnNumbers = new ArrayList<Integer>();
+        List<Integer> columnNumbers = new ArrayList<>();
         XSSFSheet sheet = xsfxWorkbook.getSheetAt(sheetNumber);
 
         int rowIndex = 0;
@@ -30,8 +30,8 @@ public class XlsxReader {
             Cell cell = row.getCell(collNumber);
             String cellStringValue = cell.getStringCellValue();
 
-            if(cellStringValue.matches("\\d+")){
-                try{
+            if(cellStringValue.matches(REGEX_POSITIVE_INTEGER)){
+                try {
                     Integer positiveIntValue = Integer.parseInt(cell.getStringCellValue());
                     columnNumbers.add(positiveIntValue);
                 } catch (NumberFormatException e) {
@@ -46,4 +46,8 @@ public class XlsxReader {
         return columnNumbers;
     }
 
+    @Override
+    public void close() throws IOException {
+        xsfxWorkbook.close();
+    }
 }
